@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
               <img
-                src="/logo.png"
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="Maestro ICT"
                 className="h-10 w-auto object-contain"
                 onError={(e) => {

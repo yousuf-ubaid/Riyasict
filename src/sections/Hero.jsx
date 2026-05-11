@@ -209,7 +209,7 @@ export default function Hero() {
           >
             {/* Tutor image — anchored to top, bottom overflows and is clipped by card */}
             <img
-              src="/hero.png"
+              src={`${import.meta.env.BASE_URL}hero.png`}
               alt="Riyas Rushard — Maestro in ICT"
               className="absolute top-0 right-0 h-full w-auto object-contain object-top select-none"
               style={{ filter: 'drop-shadow(0 0 40px rgba(6,182,212,0.3))' }}

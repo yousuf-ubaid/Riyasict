@@ -61,7 +61,7 @@ export default function Navbar() {
               className="flex items-center shrink-0 group"
             >
               <img
-                src="/logo.png"
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="Maestro ICT"
                 className="h-8 w-auto object-contain group-hover:scale-105 transition-transform"
                 onError={(e) => {
