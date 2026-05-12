@@ -69,7 +69,7 @@ function CircuitGrid() {
     <div
       className="absolute inset-0 pointer-events-none"
       style={{
-        backgroundImage: `radial-gradient(circle, rgba(6,182,212,0.18) 1px, transparent 1px)`,
+        backgroundImage: `radial-gradient(circle, rgba(6,182,212,0.28) 1px, transparent 1px)`,
         backgroundSize: '36px 36px',
         maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%)',
       }}
@@ -102,7 +102,10 @@ export default function Hero() {
         {/* ── CARD ── */}
         <div
           className="relative rounded-3xl overflow-hidden"
-          style={{ background: '#080e1f', minHeight: '680px' }}
+          style={{
+            background: 'linear-gradient(135deg, #bfdbfe 0%, #ddd6fe 30%, #fce7f3 62%, #ccfbf1 100%)',
+            minHeight: '680px',
+          }}
         >
           {/* Circuit dot grid */}
           <CircuitGrid />
@@ -111,8 +114,8 @@ export default function Hero() {
           <div
             className="absolute bottom-0 right-[8%] w-[500px] h-[500px] rounded-full pointer-events-none"
             style={{
-              background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(99,102,241,0.10) 50%, transparent 72%)',
-              filter: 'blur(50px)',
+              background: 'radial-gradient(circle, rgba(232,121,249,0.2) 0%, rgba(99,102,241,0.14) 50%, transparent 72%)',
+              filter: 'blur(60px)',
             }}
           />
 
@@ -124,7 +127,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs font-bold mb-6 tracking-widest uppercase"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-700 text-xs font-bold mb-6 tracking-widest uppercase"
             >
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               O/L &amp; A/L · English Medium · ICT
@@ -132,7 +135,7 @@ export default function Hero() {
 
             {/* Typewriter headline */}
             <h1
-              className="font-display font-black text-white leading-[1.02] tracking-tight mb-5"
+              className="font-display font-black text-slate-900 leading-[1.02] tracking-tight mb-5"
               style={{ fontSize: 'clamp(3rem, 6.5vw, 5.5rem)', minHeight: '2.2em' }}
             >
               <span className="block">
@@ -142,9 +145,9 @@ export default function Hero() {
               <span
                 className="block"
                 style={{
-                  WebkitTextStroke: '1px rgba(6,182,212,0.6)',
+                  WebkitTextStroke: '0px transparent',
                   color: 'transparent',
-                  backgroundImage: 'linear-gradient(90deg, #fff 40%, #06b6d4 100%)',
+                  backgroundImage: 'linear-gradient(90deg, #0f172a 30%, #0891b2 100%)',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
                 }}
@@ -156,7 +159,7 @@ export default function Hero() {
 
             {/* Hashtag line */}
             <p
-              className="text-xl md:text-2xl font-bold text-white/90 mb-3"
+              className="text-xl md:text-2xl font-bold text-slate-800 mb-3"
               style={{ minHeight: '1.6em' }}
             >
               {line3.displayed.length > 0 && <HashtagLine text={line3.displayed} />}
@@ -167,7 +170,7 @@ export default function Hero() {
             <motion.p
               animate={{ opacity: line3.done ? 1 : 0 }}
               transition={{ duration: 0.6 }}
-              className="text-slate-400 text-sm md:text-base font-medium mb-8"
+              className="text-slate-500 text-sm md:text-base font-medium mb-8"
             >
               No.1 Sri Lanka's English Medium ICT Class
             </motion.p>
@@ -191,7 +194,7 @@ export default function Hero() {
                 href="https://wa.me/94788584316"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-white/8 border border-white/15 text-white font-bold text-sm hover:bg-white/15 transition-all hover:scale-105 backdrop-blur-sm"
+                className="flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-white/70 border border-slate-200 text-slate-800 font-bold text-sm hover:bg-white transition-all hover:scale-105 backdrop-blur-sm shadow-sm"
               >
                 <MessageCircle size={16} className="text-green-400" />
                 Talk to us
@@ -233,10 +236,10 @@ export default function Hero() {
                 }}
                 className={`absolute z-20 ${s.pos} flex items-center gap-3 rounded-2xl px-4 py-3`}
                 style={{
-                  background: 'rgba(8,14,31,0.75)',
-                  border: '1px solid rgba(6,182,212,0.3)',
+                  background: 'rgba(255,255,255,0.82)',
+                  border: '1px solid rgba(6,182,212,0.25)',
                   backdropFilter: 'blur(14px)',
-                  boxShadow: '0 4px 28px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07)',
+                  boxShadow: '0 4px 24px rgba(6,182,212,0.12), inset 0 1px 0 rgba(255,255,255,0.9)',
                   pointerEvents: 'auto',
                 }}
               >
@@ -250,8 +253,8 @@ export default function Hero() {
                   <s.icon size={16} className="text-cyan-400" strokeWidth={2} />
                 </div>
                 <div>
-                  <div className="font-display font-black text-lg text-white leading-none">{s.value}</div>
-                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mt-0.5">{s.label}</div>
+                  <div className="font-display font-black text-lg text-slate-900 leading-none">{s.value}</div>
+                  <div className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider mt-0.5">{s.label}</div>
                 </div>
               </motion.div>
             ))}
