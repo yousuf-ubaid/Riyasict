@@ -174,10 +174,6 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* ── Hint ── */}
-        <p className="text-center text-slate-700 text-xs mt-10">
-          Drop photos into <code className="text-cyan-700/60">public/gallery/</code> named 1.jpg … 6.jpg
-        </p>
 
       </div>
     </section>
