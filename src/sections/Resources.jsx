@@ -85,8 +85,11 @@ function ResourceCard({ resource, index }) {
         {resource.items.map((item, i) => {
           const Icon = typeIcon[item.type] || Download
           return (
-            <motion.div
+            <motion.a
               key={i}
+              href="https://exam.riyasict.com/resources"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ x: 4 }}
               className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-50 transition-colors group cursor-pointer"
             >
@@ -104,7 +107,7 @@ function ResourceCard({ resource, index }) {
                 size={15}
                 className="text-slate-400 group-hover:text-blue-500 transition-colors shrink-0"
               />
-            </motion.div>
+            </motion.a>
           )
         })}
       </div>

@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Camera, ImageIcon } from 'lucide-react'
 
+const base = import.meta.env.BASE_URL
+
 const items = [
-  { id: 1, caption: 'Kandy Theory Class',         tag: 'Centrix Kandy',  img: '/gallery/1.jpg', accent: '#06b6d4' },
-  { id: 2, caption: "A/L Results Day 2024",        tag: 'Highlights',     img: '/gallery/2.jpg', accent: '#8b5cf6' },
-  { id: 3, caption: 'Online Session in Progress',  tag: 'Via Zoom',       img: '/gallery/3.jpg', accent: '#10b981' },
-  { id: 4, caption: 'Grandpass Batch',             tag: 'Eduzone',        img: '/gallery/4.jpg', accent: '#f59e0b' },
-  { id: 5, caption: 'Dehiwala Students',           tag: 'Team Comrade',   img: '/gallery/5.jpg', accent: '#f43f5e' },
-  { id: 6, caption: 'Past Paper Session',          tag: 'Revision',       img: '/gallery/6.jpg', accent: '#06b6d4' },
+  { id: 1, caption: 'Kandy Theory Class',         tag: 'Centrix Kandy',  img: `${base}gallery/1.jpg`, accent: '#06b6d4' },
+  { id: 2, caption: "A/L Results Day 2024",        tag: 'Highlights',     img: `${base}gallery/2.jpg`, accent: '#8b5cf6' },
+  { id: 3, caption: 'Online Session in Progress',  tag: 'Via Zoom',       img: `${base}gallery/3.jpg`, accent: '#10b981' },
+  { id: 4, caption: 'Grandpass Batch',             tag: 'Eduzone',        img: `${base}gallery/4.jpg`, accent: '#f59e0b' },
+  { id: 5, caption: 'Dehiwala Students',           tag: 'Team Comrade',   img: `${base}gallery/5.jpg`, accent: '#f43f5e' },
+  { id: 6, caption: 'Past Paper Session',          tag: 'Revision',       img: `${base}gallery/6.jpg`, accent: '#06b6d4' },
 ]
 
 const CARD_W = 220
@@ -110,21 +112,6 @@ export default function Gallery() {
                   />
                 </div>
 
-                {/* ── Hover caption ── */}
-                <motion.div
-                  animate={{ opacity: isHov ? 1 : 0, y: isHov ? 0 : 14 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute inset-x-0 bottom-0 px-4 py-4"
-                  style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%)' }}
-                >
-                  <span
-                    className="block text-[10px] font-black uppercase tracking-widest mb-1"
-                    style={{ color: item.accent }}
-                  >
-                    {item.tag}
-                  </span>
-                  <span className="text-white text-sm font-semibold leading-tight">{item.caption}</span>
-                </motion.div>
 
                 {/* ── Glow border ── */}
                 <motion.div
@@ -161,15 +148,6 @@ export default function Gallery() {
                 className="absolute inset-0 w-full h-full object-cover"
                 onError={(e) => { e.target.style.display = 'none' }}
               />
-              <div
-                className="absolute inset-x-0 bottom-0 px-3 py-3"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}
-              >
-                <span className="text-[10px] font-black uppercase" style={{ color: item.accent }}>
-                  {item.tag}
-                </span>
-                <p className="text-white text-xs font-semibold">{item.caption}</p>
-              </div>
             </div>
           ))}
         </div>
