@@ -15,33 +15,25 @@ export default function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
               <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="Maestro ICT"
-                className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                  e.target.nextSibling.style.display = 'flex'
-                }}
+                src={`${import.meta.env.BASE_URL}logo_white.jpeg`}
+                alt="Team Maestro"
+                className="h-12 w-auto object-contain"
               />
-              <span className="hidden items-center gap-2">
-                <span className="font-display font-bold text-xl gradient-text">Maestro</span>
-                <span className="text-slate-400 text-sm font-normal">ICT</span>
-              </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
               No.1 Sri Lanka's English Medium ICT Class. Building confident, skilled learners across O/L and A/L.
             </p>
             {/* Socials */}
             <div className="flex gap-3">
-              <a href="https://youtube.com/@maestroict" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.youtube.com/@riyasict" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-red-600/20 border border-red-600/30 flex items-center justify-center text-red-400 hover:bg-red-600/30 transition-colors">
                 <Youtube size={15} />
               </a>
-              <a href="https://facebook.com/maestroict" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.facebook.com/ict.riyas/" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-600/30 flex items-center justify-center text-blue-400 hover:bg-blue-600/30 transition-colors">
                 <Facebook size={15} />
               </a>
-              <a href="https://instagram.com/maestroict" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/riyasrushard" target="_blank" rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl bg-pink-600/20 border border-pink-600/30 flex items-center justify-center text-pink-400 hover:bg-pink-600/30 transition-colors">
                 <Instagram size={15} />
               </a>
@@ -89,11 +81,20 @@ export default function Footer() {
             </ul>
 
             <h4 className="font-semibold text-white text-sm mt-6 mb-4">Centres</h4>
-            <ul className="flex flex-col gap-2 text-sm text-slate-400">
-              <li>Centrix Kandy</li>
-              <li>Eduzone Grandpass</li>
-              <li>Team Comrade Dehiwala</li>
-              <li>Via Zoom (Online)</li>
+            <ul className="flex flex-col gap-2 text-sm">
+              {[
+                { name: 'Centrix Kandy',          url: 'https://share.google/sBohvW4g5QMoIjPrf' },
+                { name: 'Eduzone Grandpass',       url: 'https://share.google/XLH9NNbVgGH6Gouz3' },
+                { name: 'Team Comrade Dehiwala',   url: 'https://share.google/9hYTcxFWxRlKQReZy' },
+                { name: 'Via Zoom',                url: 'https://lms.riyasict.com' },
+              ].map((c) => (
+                <li key={c.name}>
+                  <a href={c.url} target="_blank" rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-white transition-colors">
+                    {c.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 

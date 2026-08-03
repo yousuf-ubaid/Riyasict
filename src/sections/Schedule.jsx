@@ -201,10 +201,16 @@ export default function Schedule() {
                     </div>
                   </div>
                   <button
-                    onClick={() => window.open('https://wa.me/94788584316', '_blank')}
+                    onClick={() => {
+                      if (active.type === 'online') {
+                        window.open('https://lms.riyasict.com', '_blank')
+                      } else {
+                        window.open('https://wa.me/94788584316', '_blank')
+                      }
+                    }}
                     className="text-xs px-3 py-1.5 rounded-xl bg-green-50 border border-green-200 text-green-700 font-semibold hover:bg-green-100 transition-colors opacity-0 group-hover:opacity-100"
                   >
-                    Enroll →
+                    {active.type === 'online' ? 'Join Online →' : 'Enroll →'}
                   </button>
                 </motion.div>
               ))}
@@ -214,12 +220,12 @@ export default function Schedule() {
             <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
               <p className="text-xs text-slate-500">Contact us to confirm seat availability.</p>
               <a
-                href="https://wa.me/94788584316"
+                href={active.type === 'online' ? 'https://lms.riyasict.com' : 'https://wa.me/94788584316'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-green-500 text-white text-xs font-semibold hover:bg-green-600 transition-colors shadow-sm"
               >
-                📱 WhatsApp to Enroll
+                {active.type === 'online' ? '🖥️ Join via LMS' : '📱 WhatsApp to Enroll'}
               </a>
             </div>
           </motion.div>
