@@ -100,8 +100,8 @@ export default function About() {
 
                 <motion.div
                   animate={{ y: [0, -7, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-3 border border-purple-100 shadow-lg"
+                  transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+                  className="absolute -top-4 -right-6 bg-white rounded-2xl px-4 py-3 border border-purple-100 shadow-lg"
                 >
                   <div className="text-2xl font-bold font-display text-purple-600">95%</div>
                   <div className="text-xs text-slate-500">Pass Rate</div>
@@ -109,8 +109,8 @@ export default function About() {
 
                 <motion.div
                   animate={{ y: [0, 7, 0] }}
-                  transition={{ duration: 3.2, repeat: Infinity }}
-                  className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 border border-green-100 shadow-lg"
+                  transition={{ duration: 4.5, repeat: Infinity, delay: 1 }}
+                  className="absolute -bottom-4 -left-6 bg-white rounded-2xl px-4 py-3 border border-green-100 shadow-lg"
                 >
                   <div className="text-2xl font-bold font-display text-green-600">500+</div>
                   <div className="text-xs text-slate-500">'A' Results</div>
@@ -126,16 +126,16 @@ export default function About() {
             animate={rightInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-5">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-5 mt-10 lg:mt-0">
               Turning ICT Confusion into Exam Confidence
             </h3>
-            <p className="text-slate-600 leading-relaxed mb-5">
+            <p className="text-slate-600 leading-relaxed mb-6 md:mb-5">
               Hi! I'm <span className="text-slate-900 font-semibold">Riyas Rushard</span>, known as{' '}
               <span className="gradient-text font-semibold">Maestro</span> — a dedicated ICT tutor
               with a passion for helping students truly understand the world of Information and
               Communication Technology.
             </p>
-            <p className="text-slate-600 leading-relaxed mb-8">
+            <p className="text-slate-600 leading-relaxed mb-10 md:mb-8">
               With a strong academic background and hands-on experience, I bridge the gap between
               textbook theory and real-world application. Whether you're starting out or preparing for
               O/L and A/L exams, my lessons are structured, practical, and always student-focused.

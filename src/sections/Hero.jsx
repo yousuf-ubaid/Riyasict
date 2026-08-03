@@ -120,7 +120,7 @@ export default function Hero() {
           />
 
           {/* ── LEFT TEXT CONTENT ── */}
-          <div className="relative z-10 px-10 md:px-16 lg:px-24 py-16 pb-14 lg:w-[52%]">
+          <div className="relative z-10 px-8 md:px-16 lg:px-24 py-12 pb-6 lg:pb-14 lg:w-[52%]">
 
             {/* Badge */}
             <motion.div
@@ -179,7 +179,7 @@ export default function Hero() {
             <motion.div
               animate={{ opacity: line3.done ? 1 : 0, y: line3.done ? 0 : 10 }}
               transition={{ duration: 0.5 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-col sm:flex-row flex-wrap gap-3"
             >
               <a
                 href="https://lms.riyasict.com"
@@ -202,7 +202,37 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT: TUTOR IMAGE (absolutely positioned, overflows bottom → card clips feet) ── */}
+          {/* ── MOBILE: tutor image shown below text ── */}
+          {/* 🔧 MOBILE IMAGE CONTROLS — edit these values to adjust */}
+          {(() => {
+            const mobileContainerH = 320   // px — fixed box height, NEVER changes size
+            const mobileZoom       = 2.9   // zoom — 1 = normal, 1.3 = 30% bigger, 1.5 = 50% bigger
+            const mobileX          = -8     // px left/right — negative moves left, positive moves right
+            const mobileY          = -28    // px up/down   — negative moves up,   positive moves down
+            return (
+              <div className="lg:hidden relative z-10 flex justify-center">
+                <div
+                  className="overflow-hidden flex justify-center w-full"
+                  style={{ height: mobileContainerH }}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}hero.png`}
+                    alt="Riyas Rushard — Maestro in ICT"
+                    className="w-auto select-none"
+                    style={{
+                      height: '100%',
+                      transform: `translate(${mobileX}px, ${mobileY}px) scale(${mobileZoom})`,
+                      transformOrigin: 'center top',
+                      filter: 'drop-shadow(0 0 24px rgba(6,182,212,0.25))',
+                    }}
+                    draggable={false}
+                  />
+                </div>
+              </div>
+            )
+          })()}
+
+          {/* ── DESKTOP: tutor image absolutely positioned, overflows bottom → card clips feet ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
