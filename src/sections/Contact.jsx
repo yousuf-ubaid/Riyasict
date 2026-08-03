@@ -2,29 +2,23 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Send, Phone, Mail, MessageCircle, MapPin, Clock, ArrowRight, Youtube, Instagram, Facebook } from 'lucide-react'
+import emailjs from '@emailjs/browser'
+
+// ─────────────────────────────────────────────────
+// 🔧 EMAILJS CONFIG — replace with your own values
+//    Sign up free at https://www.emailjs.com
+//    Dashboard → Email Services  → copy Service ID
+//    Dashboard → Email Templates → copy Template ID
+//    Dashboard → Account → API Keys → copy Public Key
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
+// ─────────────────────────────────────────────────
 
 const socials = [
-  {
-    name: 'YouTube',
-    icon: Youtube,
-    href: 'https://youtube.com/@maestroict',
-    color: 'text-red-600',
-    bg: 'bg-red-50 border-red-200 hover:bg-red-100',
-  },
-  {
-    name: 'Facebook',
-    icon: Facebook,
-    href: 'https://facebook.com/maestroict',
-    color: 'text-blue-700',
-    bg: 'bg-blue-50 border-blue-200 hover:bg-blue-100',
-  },
-  {
-    name: 'Instagram',
-    icon: Instagram,
-    href: 'https://instagram.com/maestroict',
-    color: 'text-pink-600',
-    bg: 'bg-pink-50 border-pink-200 hover:bg-pink-100',
-  },
+  { name: 'YouTube',   icon: Youtube,   href: 'https://www.youtube.com/@riyasict',         color: 'text-red-600',  bg: 'bg-red-50 border-red-200 hover:bg-red-100' },
+  { name: 'Facebook',  icon: Facebook,  href: 'https://www.facebook.com/ict.riyas/',        color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200 hover:bg-blue-100' },
+  { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/riyasrushard',     color: 'text-pink-600', bg: 'bg-pink-50 border-pink-200 hover:bg-pink-100' },
 ]
 
 const contactDetails = [
@@ -37,15 +31,24 @@ const contactDetails = [
 const courses = ['A/L ICT', 'O/L ICT', 'Other / Custom']
 
 export default function Contact() {
+  const formRef = useRef(null)
   const headerRef = useRef(null)
   const headerInView = useInView(headerRef, { once: true })
   const [form, setForm] = useState({ name: '', email: '', phone: '', course: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSent(true)
+    setSending(true)
+    setError('')
+    emailjs
+      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, formRef.current, EMAILJS_PUBLIC_KEY)
+      .then(() => { setSent(true); setSending(false) })
+      .catch(() => { setError('Something went wrong. Please try WhatsApp instead.'); setSending(false) })
   }
 
   return (
@@ -164,7 +167,7 @@ export default function Contact() {
               ) : (
                 <>
                   <h3 className="font-display font-bold text-slate-900 text-lg mb-6">Enrollment Inquiry</h3>
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs text-slate-500 mb-1.5 block font-medium">Full Name *</label>
@@ -198,11 +201,14 @@ export default function Contact() {
                         placeholder="Tell us your current level, preferred centre, and any questions..."
                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:bg-white transition-all text-sm resize-none" />
                     </div>
-                    <button type="submit"
-                      className="group flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold text-sm hover:opacity-90 transition-all hover:scale-[1.01] shadow-md shadow-blue-200">
+                    {error && (
+                      <p className="text-sm text-red-500 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">{error}</p>
+                    )}
+                    <button type="submit" disabled={sending}
+                      className="group flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold text-sm hover:opacity-90 transition-all hover:scale-[1.01] shadow-md shadow-blue-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100">
                       <Send size={16} />
-                      Send Inquiry
-                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      {sending ? 'Sending…' : 'Send Inquiry'}
+                      {!sending && <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
                     </button>
                   </form>
                 </>
