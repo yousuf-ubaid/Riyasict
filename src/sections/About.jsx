@@ -74,21 +74,10 @@ export default function About() {
               <div className="relative flex items-center justify-center">
                 <div className="w-64 h-64 md:w-72 md:h-72 rounded-3xl overflow-hidden border border-blue-200 shadow-xl bg-gradient-to-br from-blue-50 to-cyan-50">
                   <img
-                    src="/tutor.png"
+                    src={`${import.meta.env.BASE_URL}hero_2.png`}
                     alt="Riyas Rushard"
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.style.display = 'none'
-                      e.target.nextSibling.style.display = 'flex'
-                    }}
+                    className="w-full h-full object-cover object-top"
                   />
-                  <div className="hidden w-full h-full bg-gradient-to-br from-blue-50 to-cyan-50 flex-col items-center justify-center">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-4xl font-bold font-display text-white mb-3 shadow-lg glow">
-                      R
-                    </div>
-                    <span className="text-slate-800 font-display font-semibold text-xl">Riyas Rushard</span>
-                    <span className="text-blue-600 text-sm mt-1">Maestro in ICT</span>
-                  </div>
                 </div>
 
                 <motion.div
@@ -107,6 +96,24 @@ export default function About() {
                 >
                   <div className="text-2xl font-bold font-display text-cyan-600">1000+</div>
                   <div className="text-xs text-slate-500">Students</div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, -7, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-3 border border-purple-100 shadow-lg"
+                >
+                  <div className="text-2xl font-bold font-display text-purple-600">95%</div>
+                  <div className="text-xs text-slate-500">Pass Rate</div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, 7, 0] }}
+                  transition={{ duration: 3.2, repeat: Infinity }}
+                  className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 border border-green-100 shadow-lg"
+                >
+                  <div className="text-2xl font-bold font-display text-green-600">500+</div>
+                  <div className="text-xs text-slate-500">'A' Results</div>
                 </motion.div>
               </div>
             </div>
