@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, MessageCircle, Users, Trophy, TrendingUp, Clock } from 'lucide-react'
+import { ArrowRight, MessageCircle, Trophy, MapPin, GraduationCap, Star, Award } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 // ── Typewriter hook ──────────────────────────────────────
@@ -53,13 +53,14 @@ function HashtagLine({ text }) {
 }
 
 // ── Floating stat chips ───────────────────────────────────
-// positions are % of the image container (which is ~155% of card height)
+// positions are % of the image container (which is ~158% of card height)
 // so top-[X%] where X < 62 will be visible inside the card
 const stats = [
-  { icon: Users,      value: '1000+', label: 'Students',     pos: 'top-[10%]  left-[17%]',  delay: 0    },
-  { icon: Trophy,     value: '500+',  label: "'A' Results",  pos: 'top-[6%]  right-[1%]', delay: 0.18 },
-  { icon: TrendingUp, value: '95%',   label: 'Pass Rate',    pos: 'top-[45%] left-[10%]',  delay: 0.32 },
-  { icon: Clock,      value: '5+',    label: 'Yrs Teaching', pos: 'top-[51%] right-[2%]', delay: 0.46 },
+  { icon: Trophy,        value: 'District 1st', label: '2024',                pos: 'top-[5%]  left-[2%]',  delay: 0    },
+  { icon: Award,         value: 'District 1st', label: '2025',                pos: 'top-[5%]  right-[2%]', delay: 0.14 },
+  { icon: Star,          value: '100+',         label: "'A' Results",         pos: 'top-[30%] left-[2%]',  delay: 0.26 },
+  { icon: MapPin,        value: '3',            label: 'Centres',             pos: 'top-[30%] right-[2%]', delay: 0.38 },
+  { icon: GraduationCap, value: '300+',         label: 'University Entrance', pos: 'top-[53%] left-[2%]',  delay: 0.50 },
 ]
 
 

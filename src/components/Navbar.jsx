@@ -36,7 +36,7 @@ export default function Navbar() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
           className="w-full"
-          style={{ maxWidth: '780px' }}
+          style={{ maxWidth: '920px' }}
         >
           <div
             className="flex items-center justify-between rounded-full px-3 py-2.5 transition-all duration-300"
@@ -87,7 +87,6 @@ export default function Navbar() {
                   onMouseLeave={() => setHovered(null)}
                   className="relative px-4 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors rounded-full"
                 >
-                  {/* Hover pill bg */}
                   {hovered === link.label && (
                     <motion.span
                       layoutId="nav-hover"
@@ -101,6 +100,26 @@ export default function Navbar() {
                   <span className="relative z-10">{link.label}</span>
                 </a>
               ))}
+              <a
+                href="https://exam.riyasict.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={() => setHovered('Exam Portal')}
+                onMouseLeave={() => setHovered(null)}
+                className="relative px-4 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors rounded-full whitespace-nowrap"
+              >
+                {hovered === 'Exam Portal' && (
+                  <motion.span
+                    layoutId="nav-hover"
+                    className="absolute inset-0 rounded-full bg-slate-100"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                  />
+                )}
+                <span className="relative z-10">Exam Portal</span>
+              </a>
             </nav>
 
             {/* CTA + mobile toggle */}
@@ -108,7 +127,7 @@ export default function Navbar() {
               <a
                 href="#schedule"
                 onClick={(e) => go(e, '#schedule')}
-                className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-sm font-semibold hover:opacity-90 transition-all hover:scale-105 shadow-md shadow-blue-200"
+                className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-sm font-semibold hover:opacity-90 transition-all hover:scale-105 shadow-md shadow-blue-200 whitespace-nowrap"
               >
                 Join Classes
               </a>
@@ -153,9 +172,17 @@ export default function Navbar() {
                 </a>
               ))}
               <a
+                href="https://exam.riyasict.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 px-4 py-3 rounded-2xl border border-blue-200 text-blue-600 text-center font-semibold text-sm hover:bg-blue-50 transition-colors"
+              >
+                Exam Portal
+              </a>
+              <a
                 href="#schedule"
                 onClick={(e) => go(e, '#schedule')}
-                className="mt-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-center font-semibold text-sm shadow-md shadow-blue-200"
+                className="mt-1 px-4 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-center font-semibold text-sm shadow-md shadow-blue-200"
               >
                 Join Classes
               </a>

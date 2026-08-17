@@ -1,31 +1,87 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Camera, ImageIcon } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Camera, X, ImageIcon } from 'lucide-react'
 
 const base = import.meta.env.BASE_URL
 
 const items = [
-  { id: 1, caption: 'Kandy Theory Class',         tag: 'Centrix Kandy',  img: `${base}gallery/1.jpg`, accent: '#06b6d4' },
-  { id: 2, caption: "A/L Results Day 2024",        tag: 'Highlights',     img: `${base}gallery/2.jpg`, accent: '#8b5cf6' },
-  { id: 3, caption: 'Online Session in Progress',  tag: 'Via Zoom',       img: `${base}gallery/3.jpg`, accent: '#10b981' },
-  { id: 4, caption: 'Grandpass Batch',             tag: 'Eduzone',        img: `${base}gallery/4.jpg`, accent: '#f59e0b' },
-  { id: 5, caption: 'Dehiwala Students',           tag: 'Team Comrade',   img: `${base}gallery/5.jpg`, accent: '#f43f5e' },
-  { id: 6, caption: 'Past Paper Session',          tag: 'Revision',       img: `${base}gallery/6.jpg`, accent: '#06b6d4' },
+  { id: 1, caption: 'Kandy Theory Class',          tag: 'Centrix Kandy',  img: `${base}gallery/1.jpg`, accent: '#06b6d4' },
+  { id: 2, caption: "A/L Results Day 2024",         tag: 'Highlights',     img: `${base}gallery/2.jpg`, accent: '#8b5cf6' },
+  { id: 3, caption: 'Online Session in Progress',   tag: 'Via Zoom',       img: `${base}gallery/3.jpg`, accent: '#10b981' },
+  { id: 4, caption: 'Grandpass Batch',              tag: 'Eduzone',        img: `${base}gallery/4.jpg`, accent: '#f59e0b' },
+  { id: 5, caption: 'Dehiwala Students',            tag: 'Team Comrade',   img: `${base}gallery/5.jpg`, accent: '#f43f5e' },
+  { id: 6, caption: 'Past Paper Session',           tag: 'Revision',       img: `${base}gallery/6.jpg`, accent: '#06b6d4' },
 ]
 
-const CARD_W = 220
-const CARD_H = 300
-const SPREAD = 155   // horizontal gap between cards
-const EASE   = [0.23, 1, 0.32, 1]
+function MasonryCard({ item, index, onClick }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.07 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => onClick(item)}
+      className="relative rounded-2xl overflow-hidden cursor-zoom-in mb-4 break-inside-avoid"
+      style={{ display: 'block' }}
+    >
+      {/* Placeholder */}
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ background: `linear-gradient(135deg, ${item.accent}18 0%, #050a18 100%)` }}
+      >
+        <ImageIcon size={32} style={{ color: item.accent, opacity: 0.2 }} />
+      </div>
+
+      {/* Photo */}
+      <img
+        src={item.img}
+        alt={item.caption}
+        className="w-full h-auto block relative z-10 transition-transform duration-500"
+        style={{ transform: hovered ? 'scale(1.04)' : 'scale(1)' }}
+        onError={(e) => { e.target.style.display = 'none' }}
+      />
+
+      {/* Hover overlay */}
+      <div
+        className="absolute inset-0 z-20 flex items-end p-4 transition-opacity duration-300"
+        style={{
+          opacity: hovered ? 1 : 0,
+          background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%)',
+        }}
+      >
+        <div>
+          <span
+            className="text-[10px] font-black uppercase tracking-widest block mb-1"
+            style={{ color: item.accent }}
+          >
+            {item.tag}
+          </span>
+          <span className="text-white text-sm font-semibold">{item.caption}</span>
+        </div>
+      </div>
+
+      {/* Glow border on hover */}
+      <div
+        className="absolute inset-0 rounded-2xl z-30 pointer-events-none transition-opacity duration-300"
+        style={{
+          opacity: hovered ? 1 : 0,
+          boxShadow: `inset 0 0 0 1.5px ${item.accent}88`,
+        }}
+      />
+    </motion.div>
+  )
+}
 
 export default function Gallery() {
-  const [hovered, setHovered] = useState(null)
-  const center = (items.length - 1) / 2   // 2.5 for 6 items
+  const [lightbox, setLightbox] = useState(null)
 
   return (
     <section
       id="gallery"
-      className="py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="py-24 px-4 sm:px-6 lg:px-8"
       style={{ background: '#060c1a' }}
     >
       <div className="max-w-6xl mx-auto">
@@ -35,7 +91,7 @@ export default function Gallery() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase tracking-widest mb-5">
             <Camera size={12} />
@@ -51,109 +107,71 @@ export default function Gallery() {
             </motion.span>
           </h2>
           <p className="text-slate-400 text-base max-w-md mx-auto">
-            Hover over a card to bring it forward.
+            Moments from classes, results days, and the journey of our students.
           </p>
         </motion.div>
 
-        {/* ── 3D Fan — desktop ── */}
+        {/* ── Masonry Grid ── */}
         <div
-          className="relative justify-center items-center hidden md:flex"
+          className="gap-4"
           style={{
-            perspective: '1100px',
-            perspectiveOrigin: '50% 60%',
-            height: CARD_H + 100,
+            columns: 'var(--cols)',
+            '--cols': '2',
           }}
-          onMouseLeave={() => setHovered(null)}
         >
-          {items.map((item, i) => {
-            const off    = i - center               // e.g. -2.5 … 2.5
-            const isHov  = hovered === i
-            const anyHov = hovered !== null
-
-            // When hovered: face viewer, jump forward
-            // Otherwise   : fan out in 3D
-            const rotY  = isHov ? 0       : off * 22
-            const tx    = off * SPREAD
-            const tz    = isHov ? 110     : -Math.abs(off) * 35
-            const sc    = isHov ? 1.12    : 1 - Math.abs(off) * 0.055
-            const op    = isHov ? 1       : anyHov ? 0.55 - Math.abs(off) * 0.04 : 1 - Math.abs(off) * 0.06
-            const zi    = isHov ? 20      : 10 - Math.abs(Math.round(off))
-
-            return (
-              <motion.div
-                key={item.id}
-                onMouseEnter={() => setHovered(i)}
-                animate={{ rotateY: rotY, x: tx, z: tz, scale: sc, opacity: op }}
-                transition={{ duration: 0.38, ease: EASE }}
-                style={{
-                  position:       'absolute',
-                  width:          CARD_W,
-                  height:         CARD_H,
-                  zIndex:         zi,
-                  cursor:         'pointer',
-                  borderRadius:   16,
-                  overflow:       'hidden',
-                }}
-              >
-                {/* ── Photo ── */}
-                <div className="absolute inset-0">
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: `linear-gradient(135deg, ${item.accent}1a 0%, #050a18 100%)` }}
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <ImageIcon size={40} style={{ color: item.accent, opacity: 0.18 }} />
-                  </div>
-                  <img
-                    src={item.img}
-                    alt={item.caption}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onError={(e) => { e.target.style.display = 'none' }}
-                  />
-                </div>
-
-
-                {/* ── Glow border ── */}
-                <motion.div
-                  animate={{ opacity: isHov ? 1 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    position:    'absolute',
-                    inset:       0,
-                    borderRadius: 16,
-                    pointerEvents: 'none',
-                    boxShadow:   `inset 0 0 0 1.5px ${item.accent}99, 0 0 50px ${item.accent}44`,
-                  }}
-                />
-              </motion.div>
-            )
-          })}
+          <style>{`
+            @media (min-width: 640px)  { .masonry-wrap { columns: 2; } }
+            @media (min-width: 1024px) { .masonry-wrap { columns: 3; } }
+          `}</style>
+          <div className="masonry-wrap" style={{ columns: 2 }}>
+            {items.map((item, i) => (
+              <MasonryCard key={item.id} item={item} index={i} onClick={setLightbox} />
+            ))}
+          </div>
         </div>
-
-        {/* ── Fallback grid — mobile ── */}
-        <div className="grid grid-cols-2 gap-4 md:hidden">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="relative rounded-2xl overflow-hidden"
-              style={{ aspectRatio: '3/4' }}
-            >
-              <div
-                className="absolute inset-0"
-                style={{ background: `linear-gradient(135deg, ${item.accent}1a, #050a18)` }}
-              />
-              <img
-                src={item.img}
-                alt={item.caption}
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => { e.target.style.display = 'none' }}
-              />
-            </div>
-          ))}
-        </div>
-
 
       </div>
+
+      {/* ── Lightbox ── */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(0,0,0,0.92)' }}
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.88, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="relative max-w-4xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={lightbox.img}
+                alt={lightbox.caption}
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+              <div className="absolute bottom-0 inset-x-0 px-5 py-4 rounded-b-2xl"
+                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }}>
+                <span className="text-[11px] font-black uppercase tracking-widest mr-2"
+                  style={{ color: lightbox.accent }}>{lightbox.tag}</span>
+                <span className="text-white text-sm font-semibold">{lightbox.caption}</span>
+              </div>
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              >
+                <X size={16} />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
