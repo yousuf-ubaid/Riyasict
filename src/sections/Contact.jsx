@@ -10,9 +10,9 @@ import emailjs from '@emailjs/browser'
 //    Dashboard → Email Services  → copy Service ID
 //    Dashboard → Email Templates → copy Template ID
 //    Dashboard → Account → API Keys → copy Public Key
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
+const EMAILJS_SERVICE_ID  = 'service_tb1zjhs'
+const EMAILJS_TEMPLATE_ID = 'template_pox4qci'
+const EMAILJS_PUBLIC_KEY  = 'rAJwa264CF8xd6qPA'
 // ─────────────────────────────────────────────────
 
 const socials = [
