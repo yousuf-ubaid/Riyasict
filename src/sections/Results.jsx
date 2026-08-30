@@ -92,7 +92,7 @@ export default function Results() {
           {/* Summary stats */}
           <div className="flex flex-wrap justify-center gap-6 mt-8">
             {[
-              { icon: Trophy, value: '500+', label: "'A' Results", color: 'text-green-600', bg: 'bg-green-50 border-green-200' },
+              { icon: Trophy, value: '500+', label: 'Passes', color: 'text-green-600', bg: 'bg-green-50 border-green-200' },
               { icon: Trophy, value: '95%', label: 'Pass Rate', color: 'text-blue-600', bg: 'bg-blue-50 border-blue-200' },
               { icon: Trophy, value: '1000+', label: 'Total Students', color: 'text-purple-600', bg: 'bg-purple-50 border-purple-200' },
             ].map((s, i) => (

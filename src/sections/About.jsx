@@ -113,7 +113,7 @@ export default function About() {
                   className="absolute -bottom-4 -left-6 bg-white rounded-2xl px-4 py-3 border border-green-100 shadow-lg"
                 >
                   <div className="text-2xl font-bold font-display text-green-600">500+</div>
-                  <div className="text-xs text-slate-500">'A' Results</div>
+                  <div className="text-xs text-slate-500">Passes</div>
                 </motion.div>
               </div>
             </div>
