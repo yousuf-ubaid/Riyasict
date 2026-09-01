@@ -12,13 +12,12 @@ const centres = [
     color: 'blue',
     address: 'Centrix Eduspace, No: 52 Old Matale Road, Kandy',
     batches: [
-      { level: 'Grade 10', day: 'Saturday', time: '4:00 PM – 5:30 PM', tag: 'O/L' },
-      { level: 'Grade 11', day: 'Saturday', time: '8:00 AM – 10:00 AM', tag: 'O/L' },
-      { level: 'AL 2028', day: 'Saturday', time: '10:30 AM – 12:30 PM', tag: 'A/L' },
-      { level: 'AL 2027 – Batch I', day: 'Saturday', time: '2:00 PM – 4:00 PM', tag: 'A/L' },
-      { level: 'AL 2027 – Batch II', day: 'Thursday', time: '3:00 PM – 5:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Revision', day: 'Thursday', time: '8:00 AM – 3:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Theory', day: 'Friday', time: '8:00 AM – 3:00 PM', tag: 'A/L' },
+      { level: 'Grade 10',          day: 'Saturday', time: '4:00 PM – 5:30 PM',   tag: 'O/L' },
+      { level: 'Grade 11',          day: 'Saturday', time: '8:00 AM – 10:00 AM',  tag: 'O/L' },
+      { level: 'AL 2028',           day: 'Saturday', time: '10:30 AM – 12:30 PM', tag: 'A/L' },
+      { level: 'AL 2027 – Batch I', day: 'Saturday', time: '2:00 PM – 4:00 PM',   tag: 'A/L' },
+      { level: 'AL 2027 – Batch II',day: 'Thursday', time: '3:00 PM – 5:00 PM',   tag: 'A/L' },
+      { level: 'AL 2027 Revision',  day: 'Friday',   time: '7:30 AM – 12:30 PM',  tag: 'A/L' },
     ],
   },
   {
@@ -29,10 +28,9 @@ const centres = [
     color: 'purple',
     address: 'Eduzone, Grandpass, Colombo',
     batches: [
-      { level: 'AL 2028', day: 'Sunday', time: '10:30 AM – 12:30 PM', tag: 'A/L' },
-      { level: 'AL 2027', day: 'Sunday', time: '8:00 AM – 10:00 AM', tag: 'A/L' },
-      { level: 'AL 2026 Revision', day: 'Sunday', time: '10:00 AM – 3:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Theory', day: 'Sunday', time: '3:00 PM – 5:00 PM', tag: 'A/L' },
+      { level: 'AL 2028',          day: 'Sunday', time: '10:30 AM – 12:30 PM', tag: 'A/L' },
+      { level: 'AL 2027',          day: 'Sunday', time: '8:00 AM – 10:00 AM',  tag: 'A/L' },
+      { level: 'AL 2027 Revision', day: 'Sunday', time: '10:30 AM – 3:30 PM',  tag: 'A/L' },
     ],
   },
   {
@@ -43,10 +41,9 @@ const centres = [
     color: 'green',
     address: 'Team Comrade, Dehiwala',
     batches: [
-      { level: 'AL 2028', day: 'Monday', time: '3:00 PM – 5:00 PM', tag: 'A/L' },
-      { level: 'AL 2027', day: 'Monday', time: '5:00 PM – 7:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Revision', day: 'Monday', time: '8:00 PM – 11:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Theory', day: 'Monday', time: '11:00 PM – 3:00 AM', tag: 'A/L' },
+      { level: 'AL 2028',          day: 'Monday', time: '3:00 PM – 5:00 PM',  tag: 'A/L' },
+      { level: 'AL 2027',          day: 'Monday', time: '5:00 PM – 7:00 PM',  tag: 'A/L' },
+      { level: 'AL 2027 Revision', day: 'Monday', time: '1:00 PM – 5:00 PM',  tag: 'A/L' },
     ],
   },
   {
@@ -57,10 +54,10 @@ const centres = [
     color: 'cyan',
     address: 'Lankawata Online · Zoom Platform',
     batches: [
-      { level: 'AL 2028', day: 'Friday', time: '8:30 PM – 10:30 PM', tag: 'A/L' },
-      { level: 'AL 2027', day: 'Wednesday', time: '5:00 PM – 7:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Revision', day: 'Wednesday', time: '2:30 PM – 5:00 PM', tag: 'A/L' },
-      { level: 'AL 2026 Theory', day: 'Wednesday', time: '8:30 PM – 10:30 PM', tag: 'A/L' },
+      { level: 'AL 2028',          day: 'Friday',    time: '8:30 PM – 10:30 PM',  tag: 'A/L' },
+      { level: 'AL 2027',          day: 'Wednesday', time: '5:00 PM – 7:00 PM',   tag: 'A/L' },
+      { level: 'AL 2027 Revision', day: 'Friday',    time: '6:45 PM – 10:00 PM',  tag: 'A/L' },
+      { level: 'Add Paper Series', day: 'Wednesday', time: '3:00 PM – 5:00 PM',   tag: 'A/L' },
     ],
   },
 ]
